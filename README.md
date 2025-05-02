@@ -1,2 +1,2 @@
 # cambiamento-climatico
-blog informativo
+blog informativo generico
