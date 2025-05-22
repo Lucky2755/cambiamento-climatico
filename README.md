@@ -5,3 +5,4 @@ blog informativo generico
 - python
 - flask
 - flask_sqlalchemy
+- os
