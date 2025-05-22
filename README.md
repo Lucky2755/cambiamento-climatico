@@ -6,3 +6,6 @@ blog informativo generico
 - flask
 - flask_sqlalchemy
 - os
+# al primo avvio
+usare il create_db.py
+poi aprire main.py
