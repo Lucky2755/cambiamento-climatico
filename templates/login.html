@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+    </div>
+    <form action="{{ url_for('login', return_link=return_link) }}" method="POST">
+        <div class="form">
+            <h1 class="testo">Login</h1>
+            <input class="form_text" type="user_name" id="user_name" name="user_name" placeholder="Username" required>
+
+            <input class="form_text" type="email" id="email" name="email" placeholder="Email" required>
+
+            <input class="form_text" type="password" id="password" name="password" placeholder="Password" required>
+
+            <button class="login_button" type="submit">Login</button>
+            <h1 class="testo">{{error}}</h1>
+            <h1 class="testo">Don't have an account? </h1>
+            <a class="registration_button" href="{{ url_for('registration', return_link=return_link) }}">Register here</a>
+        </div>
+    </form>
+</body>
+</html>

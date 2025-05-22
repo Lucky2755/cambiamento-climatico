@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="navbar">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+        <div class="buttons">
+            <a class="home" href="/index">home</a>
+        </div>
+    </div>
+    <h1 class="testo">Ecco i tuoi post:</h1>
+    <div class="posts_d">
+    {% for post in posts %}
+      <div class="post">
+       <div class="button_container">
+          <a class="delete" href="{{ url_for('delete_post', id_post=post.id_post) }}"><img src="{{ url_for('static', filename='images/trash_icon.png') }}" alt="delete"></a>
+          <a class="edit" href="{{ url_for('edit_post', id_post=post.id_post) }}"><img src="{{ url_for('static', filename='images/modify_icon.png') }}" alt="modify"></a>
+        </div>
+        <p class="testo" ><strong>Author:</strong> {{post.user_name}}</p>
+        <div class="post_title">
+          <h2 class="testo" >{{post.title}}</h2>
+        </div>
+        <div class="post_content"
+          <p class="testo">{{post.content}}</p>
+      </div>
+      </div>
+    {% endfor %}
+  </div>
+  </div>
+</body>
+</html>

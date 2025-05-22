@@ -1,0 +1,153 @@
+body{
+    background-color: #e4e2e2;
+    margin-top: 120px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px;
+    position: fixed;      
+    top: 0;
+    left: 0;
+    width: 100%;         
+    background-color: #e4e2e2;
+    z-index: 2000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+    margin-bottom: 30px;
+    
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-right: 15px;
+}
+
+.login,
+.registration,
+.create_post,
+.dashboard,
+.login_button,
+.registration_button,
+.home,
+.create_post_button,
+.logout,
+.edit_post_button {
+    background-color: #2e7d32; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.login:hover, .registration:hover, .create_post:hover, .dashboard:hover, .login_button:hover, .home:hover, .registration_button:hover, .create_post_button:hover, .logout:hover, .edit_post_button:hover {
+    background-color: #1b5e20; 
+    background-color: #388e3c;
+}
+
+.testo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+.post{
+    max-width: 600px;     
+    width: 100%;          
+    margin: 0 auto 20px auto; 
+    background: #e4e2e2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.posts_d{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+.posts{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 40px;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.post_title, .post_content{
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 600px;     
+    width: 100%;          
+    margin: 0 auto 20px auto; 
+    background: #e4e2e2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    border-radius: 12px;
+    padding: 20px;
+}
+.login_button, .registration_button, .create_post_button, .edit_post_button {
+    width: auto;           
+    align-self: center; 
+    font-size: 15px;
+}
+.form_text {
+    border-radius: 8px; 
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.edit, .delete {
+    display: inline-flex;
+    gap: 8px;
+    padding: 10px 14px;
+    background-color: #2e7d32;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    max-width: 20px;
+}
+.edit:hover, .delete:hover {
+    background-color: #1b5e20;
+    background-color: #388e3c;
+}
+
+.edit img, .delete img {
+    width: 20px;
+    height: 20px;
+}
+.button_container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>forum-home</title>
+  
+</head>
+
+<body>
+  <div class="main">
+  <div class="navbar">
+  <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+  {% if not logged_in %}
+    <div class="buttons">
+      <a class="login" href="/login/index">Login</a>
+      <a class="registration" href="/registration/index">Registration</a>
+    </div>
+  {% else %}
+    <div class="buttons">
+      <a class="create_post" href="/create_post">Create Post</a>
+      <a class="dashboard" href="/dashboard">dashboard</a>
+      <a class="logout" href="/logout">Logout</a>
+    </div>
+  {% endif %}
+  </div>
+  <div class="posts">
+    {% for post in posts %}
+      <div class="post">
+        <p class="testo" ><strong>Author:</strong> {{post.user_name}}</p>
+        <div class="post_title">
+          <h2 class="testo" >{{post.title}}</h2>
+        </div>
+        <div class="post_content"
+          <p class="testo">{{post.content}}</p>
+      </div>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

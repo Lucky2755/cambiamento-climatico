@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Post Creation</title>
+</head>
+<body>
+    <div class="navbar">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+    <div class="buttons">
+        <a href="/index" class="home">Back to home</a>
+    </div>
+    </div>
+        
+        <form action="{{ url_for('create_post') }}" method="POST">
+        <div class="form">
+            <h1 class="testo">Create a new post</h1>
+            
+            <input type="text" id="title" name="title" class="form_text" placeholder="title" required>
+
+            <textarea id="content" name="content" class="form_text" placeholder="content" required></textarea>
+
+            <button type="submit" class="create_post_button" >Create Post</button>
+        </div>
+   
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+    </div>
+        <form method="POST" action="{{ url_for('registration', return_link=return_link) }}">
+            <div class="form">
+                <h1 class="testo">Registration</h1>
+                <input type="text" id="user_name" name="user_name" class="form_text" placeholder="Username" required>
+
+                <input type="email" id="email" name="email" class="form_text" placeholder="Email" required>
+
+                <input type="password" id="password" name="password" class="form_text" placeholder="Password" required>
+
+                <button class="registration_button" type="submit">Register</button>
+                <h1 class="testo">Already have an account?</h1>
+                <a class="login_button" href="{{ url_for('login', return_link=return_link) }}">Login here</a>
+            </div>
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+</html>
