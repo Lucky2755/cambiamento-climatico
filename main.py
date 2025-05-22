@@ -75,9 +75,9 @@ def login(return_link):
     
 @app.route("/test")
 def test():
-    user_name = "davide"
-    email = "c@c"
-    password = "c"
+    user_name = "test"
+    email = "test@test"
+    password = "test"
     user = User(user_name=user_name, email=email, password=password)
     db.session.add(user)
     db.session.commit()
