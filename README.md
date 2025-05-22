@@ -18,4 +18,4 @@ poi aprire main.py
 - visualizzare propri post: premere su dashboard
 - modificare i propri post: premere su dash board e poi sulla matita dei uno dei propri post, modificarlo e verificare la modifica
 - cancellare i propri post: premere su dashboard e sul cestino di uno dei post, verificare la cancellazione
-- UI: controllare che le schermate dei vari file html corrispondano alle immagini presenti nella cartella test. inoltre per il corretto funzionamento ogni pulsante di colore verde se passato sopra con il muose dovrebbe cambiare colore in un verde più chiaro.l
+- UI: controllare che le schermate dei vari file html corrispondano alle immagini presenti nella cartella test_images. inoltre per il corretto funzionamento ogni pulsante di colore verde se passato sopra con il muose dovrebbe cambiare colore in un verde più chiaro.l
