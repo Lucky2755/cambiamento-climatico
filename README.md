@@ -18,4 +18,5 @@ poi aprire main.py
 - visualizzare propri post: premere su dashboard
 - modificare i propri post: premere su dash board e poi sulla matita dei uno dei propri post, modificarlo e verificare la modifica
 - cancellare i propri post: premere su dashboard e sul cestino di uno dei post, verificare la cancellazione
+- creare commenti: creare un post e premere su create comment, inserire il commento e salvare. controllare se la creazione è stata effettuata
 - UI: controllare che le schermate dei vari file html corrispondano alle immagini presenti nella cartella test_images. inoltre per il corretto funzionamento ogni pulsante di colore verde se passato sopra con il muose dovrebbe cambiare colore in un verde più chiaro.l
