@@ -5,7 +5,6 @@ blog informativo generico
 - python 3.11.1
 - flask 3.0.3
 - flask_sqlalchemy 3.1.1
-- os
 # al primo avvio
 usare il create_db.py
 poi aprire main.py
