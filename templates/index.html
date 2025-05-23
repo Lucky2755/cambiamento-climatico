@@ -34,6 +34,15 @@
         <div class="post_content"
           <p class="testo">{{post.content}}</p>
       </div>
+        <div class="post_comments">
+          <h3 class="testo">Comments:</h3>
+          {% for comment in comments[post.id_post] %}
+            <p class="testo_c"><strong>{{comment.user_name}}:</strong> {{comment.content}}</p>
+          {% endfor %}
+        </div>
+        <div class="buttons">
+          <a class="create_comment_button" href="{{ url_for('create_comments', id_post=post.id_post) }}">Create Comment</a>
+        </div>
       </div>
     {% endfor %}
   </div>

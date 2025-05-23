@@ -9,6 +9,9 @@
 <body>
     <div class="navbar">
         <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+        <div class="buttons">
+            <a class="home" href="/index">Back</a>
+        </div>  
     </div>
         <form method="POST" action="{{ url_for('registration', return_link=return_link) }}">
             <div class="form">
@@ -20,11 +23,12 @@
                 <input type="password" id="password" name="password" class="form_text" placeholder="Password" required>
 
                 <button class="registration_button" type="submit">Register</button>
+                {% if error %}
+                    <p class="error">{{ error }}</p>
+                {% endif %}
                 <h1 class="testo">Already have an account?</h1>
                 <a class="login_button" href="{{ url_for('login', return_link=return_link) }}">Login here</a>
             </div>
         </form>
-        {% if error %}
-            <p class="error">{{ error }}</p>
-        {% endif %}
+        
 </html>

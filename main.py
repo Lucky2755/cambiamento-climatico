@@ -9,40 +9,61 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-
-
-
 class User(db.Model):
-    id_user = db.Column(db.Integer, primary_key=True, autoincrement = True)
+    id_user = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(50), nullable=False)
     user_name = db.Column(db.String, nullable=False, unique=True)
 
 class Post(db.Model):
-    id_post = db.Column(db.Integer, primary_key=True, autoincrement = True)
+    id_post = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     user_name = db.Column(db.String, nullable=False)
 
+class Comment(db.Model):
+    id_comment = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    content = db.Column(db.Text, nullable=False)
+    user_name = db.Column(db.String, nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id_post'), nullable=False)
+
 @app.route('/')
 def redirecting():
-    return redirect("/index")
+    return redirect(url_for("index"))
 
 @app.route('/index')
 def index():
     logged_in = session.get("logged_in", False)
     posts = Post.query.order_by(Post.id_post.desc()).all()
-    return render_template('index.html', logged_in=logged_in, posts=posts)
+    comments = {}
+    for post in posts:
+        comments[post.id_post] = Comment.query.filter_by(post_id=post.id_post).all()
+    return render_template('index.html', logged_in=logged_in, posts=posts, comments=comments)
+
+@app.route("/create_comments/<int:id_post>", methods=["GET", "POST"])
+def create_comments(id_post):
+    logged_in = session.get("logged_in", False)
+    if not logged_in:
+        return redirect(url_for("login", return_link=f"create_comments/{id_post}"))
+    if request.method == "POST":
+        content = request.form.get("comment")
+        user_name = session.get("user_name", None)
+        comment = Comment(content=content, user_name=user_name, post_id=id_post)
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for("index"))
+    else:
+        return render_template("create_comments.html", id_post=id_post)
 
 @app.route("/create_post", methods=["GET", "POST"])
 def create_post():
     logged_in = session.get("logged_in", False)
     if not logged_in:
-        return redirect(url_for("login/create_post"))
+        return redirect(url_for("login", return_link="create_post"))
     if request.method == "POST":
         title = request.form.get("title")
         content = request.form.get("content")
-        user_name = session.get("user_name", None)  
+        user_name = session.get("user_name", None)
         post = Post(title=title, content=content, user_name=user_name)
         db.session.add(post)
         db.session.commit()
@@ -53,26 +74,22 @@ def create_post():
 @app.route("/login/<path:return_link>", methods=["GET", "POST"])
 def login(return_link):
     error = ""
-    logged_in = session.get("logged_in", False)
-    if not logged_in:
-        if request.method == "POST":
-            email = request.form.get("email")
-            password = request.form.get("password")
-            global user_name
-            user_name = request.form.get("user_name")
-            user = User.query.filter_by(email=email, password=password).first()
-            if user:
-                session["logged_in"] = True
-                session["user_name"] = user.user_name
-                return redirect("/" + return_link)
-            else:
-                error = "Invalid email or password"
-                return render_template("login.html", error=error, return_link=return_link)
+    if session.get("logged_in", False):
+        # Se già loggato, vai direttamente alla pagina richiesta
+        return redirect("/" + return_link if not return_link.startswith("/") else return_link)
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        user_name = request.form.get("user_name")
+        user = User.query.filter_by(email=email, password=password, user_name=user_name).first()
+        if user:
+            session["logged_in"] = True
+            session["user_name"] = user.user_name
+            return redirect("/" + return_link if not return_link.startswith("/") else return_link)
         else:
-            return render_template("login.html", error=error, return_link=return_link)
-    else:
-        return redirect("/" + return_link)
-    
+            error = "Invalid email or password"
+    return render_template("login.html", error=error, return_link=return_link)
+
 @app.route("/test")
 def test():
     user_name = "test"
@@ -119,9 +136,8 @@ def edit_post(id_post):
 @app.route("/registration/<path:return_link>", methods=["GET", "POST"])
 def registration(return_link):
     error = ""
-    logged_in = session.get("logged_in", False)
-    if logged_in:
-        return redirect("/" + return_link)
+    if session.get("logged_in", False):
+        return redirect("/" + return_link if not return_link.startswith("/") else return_link)
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
@@ -129,18 +145,19 @@ def registration(return_link):
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
             error = "Email already exists"
-            return render_template(f"registration.html", return_link=return_link, error=error)
+            return render_template("registration.html", return_link=return_link, error=error)
         new_user = User(email=email, password=password, user_name=user_name)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for(return_link))
+        return redirect("/" + return_link if not return_link.startswith("/") else return_link)
     else:
         return render_template("registration.html", return_link=return_link, error=error)
-    
+
 @app.route("/logout")
 def logout():
-    session.pop("logged_in", False)
+    session.pop("logged_in", None)
     session.pop("user_name", None)
-    return redirect("/index")
+    return redirect(url_for("index"))
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)

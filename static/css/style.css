@@ -40,7 +40,8 @@ body{
 .home,
 .create_post_button,
 .logout,
-.edit_post_button {
+.edit_post_button,
+.create_comment_button {
     background-color: #2e7d32; 
     color: white;
     border: none;
@@ -51,12 +52,12 @@ body{
     transition: all 0.3s ease;
     text-decoration: none;
 }
-.login:hover, .registration:hover, .create_post:hover, .dashboard:hover, .login_button:hover, .home:hover, .registration_button:hover, .create_post_button:hover, .logout:hover, .edit_post_button:hover {
+.login:hover, .registration:hover, .create_post:hover, .dashboard:hover, .login_button:hover, .home:hover, .registration_button:hover, .create_post_button:hover, .logout:hover, .edit_post_button:hover, .create_comment_button:hover {
     background-color: #1b5e20; 
     background-color: #388e3c;
 }
 
-.testo {
+.testo, .error {
     font-family: 'Poppins', sans-serif;
     font-size: 24px;
     color: #333;
@@ -111,7 +112,7 @@ body{
     border-radius: 12px;
     padding: 20px;
 }
-.login_button, .registration_button, .create_post_button, .edit_post_button {
+.login_button, .registration_button, .create_post_button, .edit_post_button, .create_comment_button {
     width: auto;           
     align-self: center; 
     font-size: 15px;
@@ -150,4 +151,10 @@ body{
     gap: 8px;
     margin-bottom: 10px;
 }
-
+.testo_c{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #333;
+    text-align: left;
+    margin-top: 20px;
+}

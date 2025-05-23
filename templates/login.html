@@ -9,6 +9,9 @@
 <body>
     <div class="navbar">
         <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+        <div class="buttons">
+            <a class="home" href="/index">Back</a>
+        </div>    
     </div>
     <form action="{{ url_for('login', return_link=return_link) }}" method="POST">
         <div class="form">

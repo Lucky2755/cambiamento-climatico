@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>forum-home</title>
+</head>
+<body>
+    <div class="navbar">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+        <div class="buttons">
+            <a class="home" href="{{ url_for('index') }}">Back</a>
+        </div>
+    </div>
+    <form action="{{ url_for('create_comments', id_post=id_post) }}" method="POST">
+        <div class="form">
+            <h1 class="testo">Create Comment</h1>
+            <input class="form_text" type="text" id="comment" name="comment" placeholder="Comment" required>
+            <button class="create_comment_button" type="submit">Create</button>
+            <h1 class="testo">{{error}}</h1>
+        </div>
+</body>
+</html>
