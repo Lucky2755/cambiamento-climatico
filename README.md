@@ -2,9 +2,9 @@
 blog informativo generico
 
 # materiale necessario
-- python
-- flask
-- flask_sqlalchemy
+- python 3.11.1
+- flask 3.0.3
+- flask_sqlalchemy 3.1.1
 - os
 # al primo avvio
 usare il create_db.py
